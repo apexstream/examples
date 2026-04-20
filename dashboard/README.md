@@ -49,7 +49,7 @@ examples/dashboard/
 - A **publishable API key** (Dashboard → Issue API key).
 - **Node 18+** and npm.
 
-`client` and `publisher` depend on the **`apexstream`** package on npm (`^0.1.4`). Run **`npm install`** inside each folder; the SDK is fetched from the registry.
+`client` and `publisher` depend on the **`apexstream`** package on npm (`^1.0.5`). Run **`npm install`** inside each folder; the SDK is fetched from the registry.
 
 ## Configure
 

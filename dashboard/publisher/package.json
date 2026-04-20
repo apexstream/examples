@@ -7,6 +7,6 @@
     "start": "node publish.mjs"
   },
   "dependencies": {
-    "apexstream": "^0.1.4"
+    "apexstream": "^1.0.5"
   }
 }

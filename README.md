@@ -33,7 +33,7 @@ Demos **1–6** ship runnable clients under `examples/` (each folder’s `README
 1. Run ApexStream (API + gateway) using **your** deployment (Docker Compose, Kubernetes, a local helper script, etc.).
 2. In the **ApexStream dashboard**: create org → project → app → **issue a key**; use that key in the example’s `.env` (and the right `VITE_APEXSTREAM_WS_URL` / `APEXSTREAM_WS_URL`).
 
-**JavaScript SDK:** each demo ships its own `package.json` under `examples/<demo>/client` (and `publisher` for the dashboard). From those folders run **`npm install`** — the **`apexstream`** dependency resolves from **npm** (`^0.1.4`).
+**JavaScript SDK:** each demo ships its own `package.json` under `examples/<demo>/client` (and `publisher` for the dashboard). From those folders run **`npm install`** — the **`apexstream`** dependency resolves from **npm** (`^1.0.5`).
 
 **Never commit real keys** — only `.env.example` in git; keep secrets in local `.env` / `.env.local`.
 
