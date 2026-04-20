@@ -1,0 +1,10 @@
+{
+  "name": "@apexstream/example-ai-agents-bus",
+  "private": true,
+  "description": "Proxy npm scripts to client/",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "preview": "npm run preview --prefix client"
+  }
+}

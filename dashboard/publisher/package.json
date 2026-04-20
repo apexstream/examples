@@ -1,0 +1,12 @@
+{
+  "name": "@apexstream/example-dashboard-publisher",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node publish.mjs"
+  },
+  "dependencies": {
+    "apexstream": "^0.1.4"
+  }
+}

@@ -1,0 +1,38 @@
+# Standalone: ./client and ./publisher only (npm ci from each package).
+#
+#   cd examples/dashboard
+#   cp client/.env.example client/.env
+#   cp publisher/.env.example publisher/.env
+#   docker compose up
+#
+# UI: http://localhost:5174
+services:
+  dashboard-client:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run dev"
+    ports:
+      - "5174:5174"
+    volumes:
+      - ./client:/app
+      - dashboard_client_node_modules:/app/node_modules
+    env_file:
+      - ./client/.env
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+
+  dashboard-publisher:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    volumes:
+      - ./publisher:/app
+      - dashboard_publisher_node_modules:/app/node_modules
+    env_file:
+      - ./publisher/.env
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+
+volumes:
+  dashboard_client_node_modules:
+  dashboard_publisher_node_modules:

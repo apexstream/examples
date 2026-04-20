@@ -1,0 +1,10 @@
+{
+  "name": "@apexstream/example-presence-cursors",
+  "private": true,
+  "description": "Proxy scripts to client/ so you can run npm from this folder or from client/.",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "preview": "npm run preview --prefix client"
+  }
+}

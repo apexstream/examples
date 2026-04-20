@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --as-scrollbar-size: 6px;
+  --as-scrollbar-track: #0c0c0f;
+  --as-scrollbar-thumb: #3f3f46;
+  --as-scrollbar-thumb-hover: #52525b;
+}
+
+body {
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
+*::-webkit-scrollbar {
+  width: var(--as-scrollbar-size);
+  height: var(--as-scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--as-scrollbar-track);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--as-scrollbar-thumb);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--as-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--as-scrollbar-track);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--as-scrollbar-thumb) var(--as-scrollbar-track);
+}

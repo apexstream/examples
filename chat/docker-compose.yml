@@ -1,0 +1,24 @@
+# Standalone: mount only ./client — works from a copied demo folder (needs package-lock.json).
+#
+#   cd examples/chat
+#   cp client/.env.example client/.env
+#   docker compose up
+#
+# UI: http://localhost:5173
+services:
+  chat-client:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run dev"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+      - chat_client_node_modules:/app/node_modules
+    env_file:
+      - ./client/.env
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+
+volumes:
+  chat_client_node_modules:
