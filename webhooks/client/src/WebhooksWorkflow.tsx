@@ -28,10 +28,6 @@ export function WebhooksWorkflow() {
   const wsUrl = (import.meta.env.VITE_APEXSTREAM_WS_URL ?? "").trim();
   const apiKey = (import.meta.env.VITE_APEXSTREAM_API_KEY ?? "").trim();
   const extKey = (import.meta.env.VITE_EXTERNAL_API_KEY ?? "").trim();
-  const allowInsecure =
-    import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
-    import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
-
   const [projectId, setProjectId] = useState((import.meta.env.VITE_PROJECT_ID ?? "").trim());
   const [webhookTarget, setWebhookTarget] = useState(
     (import.meta.env.VITE_WEBHOOK_TARGET_URL ?? "http://127.0.0.1:8787/webhook").trim(),
@@ -46,10 +42,15 @@ export function WebhooksWorkflow() {
   const [pipeline, setPipeline] = useState<"idle" | "published" | "hook_ok" | "waiting">("idle");
 
   useEffect(() => {
+    const resolvedWs = wsUrl || "ws://localhost:8081/v1/ws";
+    const allowInsecureTransport =
+      resolvedWs.startsWith("ws://") ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
     const c = new ApexStreamClient({
-      url: wsUrl || "ws://localhost:8081/v1/ws",
+      url: resolvedWs,
       apiKey,
-      allowInsecureTransport: allowInsecure,
+      allowInsecureTransport,
     });
     clientRef.current = c;
     c.on("open", () => setConnected(true));
@@ -59,7 +60,7 @@ export function WebhooksWorkflow() {
       c.disconnect();
       clientRef.current = null;
     };
-  }, [wsUrl, apiKey, allowInsecure]);
+  }, [wsUrl, apiKey]);
 
   /** Aligns Project ID with the dashboard app tied to `VITE_APEXSTREAM_API_KEY` (fixes stale/wrong `VITE_PROJECT_ID`). */
   const syncProjectIdFromApiKey = useCallback(async (): Promise<boolean> => {

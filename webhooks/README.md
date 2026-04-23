@@ -69,10 +69,9 @@ Fill **`VITE_APEXSTREAM_*`** with gateway URL + **publishable** API key. Set **`
 
 Suppose the gateway/API VM is **`192.168.1.10`** and your laptop running the mock is **`192.168.1.100`**:
 
-1. **`VITE_APEXSTREAM_WS_URL=ws://192.168.1.10:30081/v1/ws`** (gateway WebSocket URL on your network).
-2. **`VITE_APEXSTREAM_ALLOW_INSECURE=1`** — required for `ws://` to a non-localhost host.
-3. **`VITE_CONTROL_PLANE_URL=http://192.168.1.10:8080`** (or whatever port serves the **Control Plane HTTP** API on that host — must be the same service that handles `GET/POST /external/v1/...`). The Vite dev server proxies `/apex-api` to this URL so the browser does not need CORS on the API.
-4. **Webhook URL in the form** must be **reachable from the API process** (not from your browser). If the mock server runs on another machine, use its LAN IP, e.g. `http://192.168.1.100:8787/webhook`, not `127.0.0.1` (from the API, loopback is the API host). If the API runs in Docker, use `http://host.docker.internal:8787/...` or the host’s IP.
+1. **`VITE_APEXSTREAM_WS_URL=ws://192.168.1.10:30081/v1/ws`** (gateway WebSocket URL on your network). The client sets **`allowInsecureTransport`** when the URL is **`ws://`** and/or **`VITE_APEXSTREAM_ALLOW_INSECURE=1`** (local HTTP page — see `client/.env.example`).
+2. **`VITE_CONTROL_PLANE_URL=http://192.168.1.10:8080`** (or whatever port serves the **Control Plane HTTP** API on that host — must be the same service that handles `GET/POST /external/v1/...`). The Vite dev server proxies `/apex-api` to this URL so the browser does not need CORS on the API.
+3. **Webhook URL in the form** must be **reachable from the API process** (not from your browser). If the mock server runs on another machine, use its LAN IP, e.g. `http://192.168.1.100:8787/webhook`, not `127.0.0.1` (from the API, loopback is the API host). If the API runs in Docker, use `http://host.docker.internal:8787/...` or the host’s IP.
 
 Optional: **`VITE_PROJECT_ID`**, **`VITE_WEBHOOK_TARGET_URL`**, **`VITE_WEBHOOK_SECRET`** defaults.
 

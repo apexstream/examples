@@ -88,7 +88,10 @@ export function useAgentBus({ session, wsUrl, apiKey }: UseAgentBusOptions) {
     }
     sawOpenRef.current = false;
 
-    const allowInsecureTransport = wsUrl.startsWith("ws://");
+    const allowInsecureTransport =
+      wsUrl.startsWith("ws://") ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
     let client: ApexStreamClient;
     try {
       client = new ApexStreamClient({

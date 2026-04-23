@@ -10,6 +10,7 @@ interface ImportMetaEnv {
   readonly VITE_PROJECT_ID?: string;
   readonly VITE_WEBHOOK_TARGET_URL?: string;
   readonly VITE_WEBHOOK_SECRET?: string;
+  /** Optional: explicit dev/LAN — set `1` or `true` with `ws://` gateway (see packages/client README). */
   readonly VITE_APEXSTREAM_ALLOW_INSECURE?: string;
 }
 

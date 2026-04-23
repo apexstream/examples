@@ -65,7 +65,7 @@ Edit both files:
 - **`APEXSTREAM_WS_URL`** / **`VITE_APEXSTREAM_WS_URL`** — WebSocket base URL, e.g. `ws://localhost:8081/v1/ws`.
 - **`APEXSTREAM_API_KEY`** — same key in client and publisher.
 - Optional: **`APEXSTREAM_METRICS_CHANNEL`** / **`VITE_APEXSTREAM_METRICS_CHANNEL`** — default `metrics`.
-- If you use `ws://` to a **non-localhost** host, set **`VITE_APEXSTREAM_ALLOW_INSECURE=1`** (client) and **`APEXSTREAM_ALLOW_INSECURE_TRANSPORT=1`** (publisher).
+- If you use `ws://` to a **non-localhost** host (LAN / NodePort), the client sets **`allowInsecureTransport`** when **`wsUrl.startsWith("ws://")`** or **`VITE_APEXSTREAM_ALLOW_INSECURE=1`** (see `client/.env.example`). The Node publisher uses **`url.startsWith("ws://")`** or **`APEXSTREAM_ALLOW_INSECURE_TRANSPORT=1`**.
 
 ## Run locally (npm)
 

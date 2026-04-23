@@ -350,7 +350,10 @@ export function useChat({
       return;
     }
 
-    const allowInsecureTransport = wsUrl.startsWith("ws://");
+    const allowInsecureTransport =
+      wsUrl.startsWith("ws://") ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
     let client: ApexStreamClient;
     try {
       client = new ApexStreamClient({

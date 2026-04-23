@@ -18,9 +18,6 @@ export function useLiveMetricsDashboard() {
   const wsUrl = (import.meta.env.VITE_APEXSTREAM_WS_URL ?? "").trim();
   const apiKey = (import.meta.env.VITE_APEXSTREAM_API_KEY ?? "").trim();
   const channel = (import.meta.env.VITE_APEXSTREAM_METRICS_CHANNEL ?? "metrics").trim();
-  const allowInsecure =
-    import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
-    import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
 
   const clientRef = useRef<ApexStreamClient | null>(null);
   const [connected, setConnected] = useState(false);
@@ -66,10 +63,15 @@ export function useLiveMetricsDashboard() {
       return;
     }
 
+    const allowInsecureTransport =
+      wsUrl.startsWith("ws://") ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "1" ||
+      import.meta.env.VITE_APEXSTREAM_ALLOW_INSECURE === "true";
+
     const client = new ApexStreamClient({
       url: wsUrl,
       apiKey,
-      allowInsecureTransport: allowInsecure,
+      allowInsecureTransport,
     });
     clientRef.current = client;
 
@@ -96,7 +98,7 @@ export function useLiveMetricsDashboard() {
       client.disconnect();
       clientRef.current = null;
     };
-  }, [wsUrl, apiKey, channel, allowInsecure, pushSample]);
+  }, [wsUrl, apiKey, channel, pushSample]);
 
   const flashClass = pulse > 0 ? "shadow-[0_0_24px_rgba(56,189,248,0.25)] ring-1 ring-sky-500/40" : "";
 

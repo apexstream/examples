@@ -55,7 +55,7 @@ const channel = pickEnv("APEXSTREAM_METRICS_CHANNEL", "VITE_APEXSTREAM_METRICS_C
 // Shorter default ≈ “live”; override with APEXSTREAM_PUBLISH_INTERVAL_MS (min 80 ms).
 const intervalMs = Math.max(80, Number(process.env.APEXSTREAM_PUBLISH_INTERVAL_MS ?? "300"));
 const allowRaw = pickEnv("APEXSTREAM_ALLOW_INSECURE_TRANSPORT", "VITE_APEXSTREAM_ALLOW_INSECURE", "");
-const allowInsecure = /^(1|true|yes|on)$/i.test(allowRaw);
+const allowInsecureEnv = /^(1|true|yes|on)$/i.test(allowRaw);
 
 if (!apiKey) {
   console.error(
@@ -88,7 +88,7 @@ let cpu = 44;
 const client = new ApexStreamClient({
   url,
   apiKey,
-  allowInsecureTransport: allowInsecure,
+  allowInsecureTransport: url.startsWith("ws://") || allowInsecureEnv,
 });
 
 let timer = null;
