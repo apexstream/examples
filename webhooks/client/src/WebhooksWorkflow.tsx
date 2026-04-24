@@ -1,5 +1,5 @@
 import { type FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import { ApexStreamClient } from "apexstream";
+import { ApexStreamClient } from "@apexstream/client";
 import { controlPlaneFetch } from "./externalApi";
 
 const DEMO_CHANNEL = "webhooks-demo";

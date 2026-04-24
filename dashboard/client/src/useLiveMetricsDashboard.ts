@@ -1,4 +1,4 @@
-import { ApexStreamClient } from "apexstream";
+import { ApexStreamClient } from "@apexstream/client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   MAX_HISTORY,

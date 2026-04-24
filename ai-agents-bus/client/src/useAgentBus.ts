@@ -1,4 +1,4 @@
-import { ApexStreamClient } from "apexstream";
+import { ApexStreamClient } from "@apexstream/client";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export type BusEnvelope =

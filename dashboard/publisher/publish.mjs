@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
-import { ApexStreamClient } from "apexstream";
+import { ApexStreamClient } from "@apexstream/client";
 
 /** Load `publisher/.env` into process.env (does not override non-empty existing vars). */
 function loadDotEnvSidecar() {
